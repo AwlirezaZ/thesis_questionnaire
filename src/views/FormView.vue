@@ -50,6 +50,8 @@
 </template>
 
 <script setup>
+import { useDataStore } from "../stores/dataStore.js";
+const store = useDataStore()
 import {ref,computed} from 'vue'
 import { useRouter } from 'vue-router'
 const router = useRouter()
@@ -161,7 +163,8 @@ const emailValidateError = computed(() => {
 
 const submit = () => {
     if(validate() === true){
-    router.push( {name: 'QuestionView'})
+        store.data.userInfo = {age: age.value.model , university: university.value.model,caseOfStudy: caseOfStudy.value.model,phoneNumber: phoneNumber.value.model,email:email.value.model,gender:gender.value.model}
+        router.push( {name: 'QuestionView'})
     }
 }
 const validate = ()=>{
