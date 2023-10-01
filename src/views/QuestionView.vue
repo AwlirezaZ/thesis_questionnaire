@@ -1,18 +1,16 @@
 <template>
-    <div>
+    <div class="bg-blue-200 h-screen overflow-y-scroll">
         <div class="text-center m-auto w-[700px] mt-[20px]">
             <p class="text-xl font-semibold">در ادامه واژه‌هایی را مشاهده خواهید کرد که احساسات و هیجانات مختلف را توصیف
                 می‌کند. از شما می‌خواهیم هر یک از عبارات را با دقت خوانده و مشخص کنید به طور معمول و در حالت کلی، هریک از
                 احساسات زیر را به چه میزانی تجربه می‌کنید.</p>
         </div>
         <ol class="flex flex-wrap mt-10">
-            <li class="basis-1/2 px-2 flex items-center ">
-                <p class="basis-1/2">علاقه‌مندم</p>
-                <slider v-model="testValue" :min="1" :max="5" :flipTooltip="true" :tooltipText="toolTipValue" :handleScale="3" :tooltip="true" :alwaysShowHandle="true" :sticky="true" :formatTooltip="testToolTip(testValue)"  color="green" track-color="yellow"/>
-            </li>
-            <li class="basis-1/2 px-2 flex items-center ">
-                <p class="basis-1/2">علاقه‌مندم</p>
-                <slider :min="1" :max="5" :tooltip="true" :handleScale="3" :sticky="true"  color="green" track-color="yellow"/>
+            <li v-for="question in questions" :key="question.question" class="basis-1/2 px-2 flex items-center my-4 ">
+                <p class="basis-1/2 text-lg font-bold">{{question.question}}</p>
+                <!-- <slider v-model="question.answer" :min="1" :max="5" :flipTooltip="true" :tooltipText="toolTipValue(question.answer)" :handleScale="3" :tooltip="true" :alwaysShowHandle="true" :sticky="true"   color="green" track-color="yellow"/> -->
+                <slider v-model="testValue" :min="1" :max="5" :flipTooltip="true" :tooltipText="toolTipValue" :handleScale="3" :tooltip="true" :alwaysShowHandle="true" :sticky="true"   color="green" track-color="yellow"/>
+            
             </li>
         </ol>
 
@@ -21,11 +19,6 @@
 
 <script setup>
 const testValue = ref(2)
-const testToolTip = (value) => {
-    if (value == 3) {
-        return 'text'
-    }
-}
 const toolTipValue = computed(()=>{
     let state =''
     switch (testValue.value){
@@ -44,14 +37,93 @@ const toolTipValue = computed(()=>{
 
 
 }) 
-// import Slider from '@vueform/slider'
 import slider from "vue3-slider"
 import { useDataStore } from "../stores/dataStore.js";
 const store = useDataStore()
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 const router = useRouter()
-console.log(store.data.userInfo)
+const questions = ref([{
+question : 'علاقه‌مندم',
+answer:''
+},
+{
+question : 'پریشان و مضطربم ',
+answer:''
+},
+{
+question : 'ذوق زده‌ام ',
+answer:''
+},
+{
+question : 'آشفته و ناراحتم',
+answer:''
+},
+{
+question : 'محکم و نیرومندم',
+answer:''
+},
+{
+question : 'مقصر و گناهکارم',
+answer:''
+},
+{
+question : 'وحشت زده‌ام',
+answer:''
+},
+{
+question : 'احساس خصمانه ای نسبت به دیگران دارم',
+answer:''
+},
+{
+question : 'مشتاقم و شور و شوق دارم',
+answer:''
+},
+{
+question : 'احساس سربلندی، غرور و افتخار می‌کنم',
+answer:''
+},
+{
+question : 'زودرنج و تحریک پذیرم',
+answer:''
+},
+{
+question : 'هوشیار و زیرکم',
+answer:''
+},
+{
+question : 'شرمسار و سرافکنده‌ام',
+answer:''
+},
+{
+question : 'خوش ذوق و با انگیزه‌ام',
+answer:''
+},
+{
+question : 'نا آرام و بی قرارم',
+answer:''
+},
+{
+question : 'مصمم و بااراده‌ام',
+answer:''
+},
+{
+question : 'آدم دقیقی هستم',
+answer:''
+},
+{
+question : 'عصبی هستم',
+answer:''
+},
+{
+question : 'فعال و پر جنب و جوشم',
+answer:''
+},
+{
+question : 'هراسان هستم',
+answer:''
+}
+])
 </script>
 
 <style scoped>
