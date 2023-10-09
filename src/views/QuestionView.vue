@@ -13,10 +13,10 @@
                     <div class="grow pr-3 pl-6 relative">
                         <div class="w-full relative">
                             <div class="absolute flex w-full left-0 right-0 -top-2.5 h-7 pointer-events-none text-xs lg:text-base">
-                                <div class="basis-1/4 h-full border-l-2 border-r-2 relative border-black after:absolute after:-left-2.5 lg:after:-left-3.5 after:font-semibold after:-top-7 after:content-['زیاد'] before:absolute before:-right-4 lg:before:-right-6 before:font-semibold before:-top-7 before:content-['خیلیزیاد']"></div>
+                                <div class="basis-1/4 h-full border-l-2 border-r-2 relative border-black after:absolute after:-left-2.5 lg:after:-left-3.5 after:font-semibold after:-top-7 after:content-['زیاد'] before:absolute before:-right-4 lg:before:-right-6 before:font-semibold before:-top-7 before:content-['خیلی‌زیاد']"></div>
                                 <div class="basis-1/4 h-full border-l-2 relative border-black after:absolute after:-left-4 lg:after:-left-6 after:font-semibold after:-top-7 after:content-['متوسط']"></div>
                                 <div class="basis-1/4 h-full border-l-2 relative border-black after:absolute after:-left-2 lg:after:-left-3 after:font-semibold after:-top-7 after:content-['کم']"></div>
-                                <div class="basis-1/4 h-full border-l-2 relative border-black after:absolute after:-left-4 lg:after:-left-6 after:font-semibold after:-top-7 after:content-['خیلیکم']"></div>
+                                <div class="basis-1/4 h-full border-l-2 relative border-black after:absolute after:-left-4 lg:after:-left-6 after:font-semibold after:-top-7 after:content-['خیلی‌کم']"></div>
                             </div>
                             <slider v-model="question.answer" :min="1" :max="5" :flipTooltip="true" :tooltipText="toolTipValue" :handleScale="3" :tooltip="false" :alwaysShowHandle="true" :sticky="true"   color="green" track-color="yellow"/>
                         </div>
@@ -24,35 +24,20 @@
                 </div>
             </li> 
         </ol>
-
+        <button @click="submit" class="p-2 rounded-md my-4 mx-auto gap-3 bg-yellow-200 duration-200 ease-in hover:scale-105 hover:-translate-y-1">مرحله بعد</button>
     </div>
 </template>
 
 <script setup>
-// const toolTipValue = computed(()=>{
-//     let state =''
-//     switch (toolTip.value){
-//         case 1: state ='خیلی کم'
-//                 break;
-//         case 2: state = 'کم'
-//                 break;
-//         case 3: state ='متوسط'
-//                 break;
-//         case 4: state ='زیاد'
-//                 break;
-//         case 5: state ='خیلی زیاد'
-//                 break;
-//             }
-//     return state;
-
-
-// }) 
 import slider from "vue3-slider"
 import { useDataStore } from "../stores/dataStore.js";
 const store = useDataStore()
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 const router = useRouter()
+const submit = () => {
+        store.data.questions = questions.value
+}
 const questions = ref([{
 question : 'علاقه‌مندم',
 answer: 0,
@@ -134,6 +119,7 @@ question : 'هراسان هستم',
 answer: 0,
 }
 ])
+
 </script>
 
 <style scoped>
