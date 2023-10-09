@@ -24,7 +24,7 @@
                 </div>
             </li> 
         </ol>
-        <button @click="submit" class="p-2 rounded-md my-4 mx-auto gap-3 bg-yellow-200 duration-200 ease-in hover:scale-105 hover:-translate-y-1">مرحله بعد</button>
+        <button @click="submit" class="p-2 block rounded-md my-4 mx-auto gap-3 bg-yellow-200 duration-200 ease-in hover:scale-105 hover:-translate-y-1">مرحله بعد</button>
     </div>
 </template>
 
