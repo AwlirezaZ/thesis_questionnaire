@@ -9,7 +9,6 @@
             <li v-for="question in questions" :key="question.question" class="basis-full lg:basis-1/2 px-2 mb-2 lg:mb-6">
                 <div class="flex flex-wrap gap-14 lg:gap-0 items-center border border-yellow-400 rounded-xl lg:h-24 p-4 lg:p-2 hover:border-yellow-800 duration-300">
                     <p class="basis-full lg:basis-1/3 text-base text-center lg:text-start lg:text-lg font-bold">{{question.question}}</p>
-                    <!-- <slider v-model="question.answer" :min="1" :max="5" :flipTooltip="true" :tooltipText="toolTipValue(question.answer)" :handleScale="3" :tooltip="true" :alwaysShowHandle="true" :sticky="true"   color="green" track-color="yellow"/> -->
                     <div class="grow pr-3 pl-6 relative">
                         <div class="w-full relative">
                             <div class="absolute flex w-full left-0 right-0 -top-2.5 h-7 pointer-events-none text-xs lg:text-base">
@@ -18,7 +17,7 @@
                                 <div class="basis-1/4 h-full border-l-2 relative border-black after:absolute after:-left-2 lg:after:-left-3 after:font-semibold after:-top-7 after:content-['کم']"></div>
                                 <div class="basis-1/4 h-full border-l-2 relative border-black after:absolute after:-left-4 lg:after:-left-6 after:font-semibold after:-top-7 after:content-['خیلی‌کم']"></div>
                             </div>
-                            <slider v-model="question.answer" :min="1" :max="5" :flipTooltip="true" :tooltipText="toolTipValue" :handleScale="3" :tooltip="false" :alwaysShowHandle="true" :sticky="true"   color="green" track-color="yellow"/>
+                            <slider v-model="question.answer" :min="1" :max="5" :flipTooltip="true" :handleScale="3" :tooltip="false" :alwaysShowHandle="true" :sticky="true"   color="green" track-color="yellow"/>
                         </div>
                     </div>
                 </div>
@@ -37,86 +36,87 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 const submit = () => {
         store.data.questions = questions.value
+        router.push( {name: 'VisualQuestionView'})
 }
 const questions = ref([{
 question : 'علاقه‌مندم',
-answer: 0,
+answer: 3,
 },
 {
 question : 'پریشان و مضطربم ',
-answer: 0,
+answer: 3,
 },
 {
 question : 'ذوق زده‌ام ',
-answer: 0,
+answer: 3,
 },
 {
 question : 'آشفته و ناراحتم',
-answer: 0,
+answer: 3,
 },
 {
 question : 'محکم و نیرومندم',
-answer: 0,
+answer: 3,
 },
 {
 question : 'مقصر و گناهکارم',
-answer: 0,
+answer: 3,
 },
 {
 question : 'وحشت زده‌ام',
-answer: 0,
+answer: 3,
 },
 {
 question : 'احساس خصمانه ای نسبت به دیگران دارم',
-answer: 0,
+answer: 3,
 },
 {
 question : 'مشتاقم و شور و شوق دارم',
-answer: 0,
+answer: 3,
 },
 {
 question : 'احساس سربلندی، غرور و افتخار می‌کنم',
-answer: 0,
+answer: 3,
 },
 {
 question : 'زودرنج و تحریک پذیرم',
-answer: 0,
+answer: 3,
 },
 {
 question : 'هوشیار و زیرکم',
-answer: 0,
+answer: 3,
 },
 {
 question : 'شرمسار و سرافکنده‌ام',
-answer: 0,
+answer: 3,
 },
 {
 question : 'خوش ذوق و با انگیزه‌ام',
-answer: 0,
+answer: 3,
 },
 {
 question : 'نا آرام و بی قرارم',
-answer: 0,
+answer: 3,
 },
 {
 question : 'مصمم و بااراده‌ام',
-answer: 0,
+answer: 3,
 },
 {
 question : 'آدم دقیقی هستم',
-answer: 0,
+answer: 3,
 },
 {
 question : 'عصبی هستم',
-answer: 0,
+answer: 3,
 },
 {
 question : 'فعال و پر جنب و جوشم',
-answer: 0,
+answer: 3,
 },
 {
 question : 'هراسان هستم',
-answer: 0,
+answer: 3,
 }
 ])
 

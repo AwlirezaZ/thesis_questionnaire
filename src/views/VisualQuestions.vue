@@ -5,11 +5,12 @@
             }}</span>
             <Transition name="bounce">
                 <div class="w-1/2 m-auto pt-[100px]" v-show="showImage">
-                    <img class="w-full h-[500px] object-cover" :src="imageRoute+selfConditions[currentImageIndex].picture" alt="">
+                    <img class="w-full h-[500px] object-cover" :src="imageRoute+selfConditions[currentImageIndex].picture.source" alt="">
+                    <span>{{selfConditions[currentImageIndex].picture.ambiguousSituation }}</span>
                 </div>
             </Transition>
-            <div class="w-1/2 m-auto pt-[450px]" v-show="showSlider">
-                <slider v-model="selfConditions[currentImageIndex].answer" :height="15" :min="-100" :max="100" :flipTooltip="true"
+            <div class="w-1/2 m-auto pt-[450px]" v-show="showSlider" v-if="selfConditions[currentImageIndex].picture">
+                <slider v-model="selfConditions[currentImageIndex].picture.answer" :height="15" :min="-100" :max="100" :flipTooltip="true"
                     :handleScale="3" :tooltip="true" :alwaysShowHandle="true" :sticky="false" color="green"
                     track-color="yellow" />
                 <button @click="nextPic"
@@ -25,7 +26,7 @@ import slider from "vue3-slider"
 import { ref, onMounted } from 'vue';
 const stages = ref(['مرحله اول', 'مرحله دوم', 'مرحله سوم', 'مرحله چهارم'])
 const currentStage = ref(stages.value[0])
-
+const currentImageIndex = ref(0)
 const showStage = ref(true)
 const imageRoute= "http://localhost:5089/app-images/"
 const showImage = ref(false)
@@ -34,13 +35,14 @@ const getImages = async () => {
     const url = 'http://localhost:5089/api/SelfCondition'
     const response = await fetch(url);
     selfConditions.value = await response.json();
+    selfConditions.value.map(obj => ({ ...obj.picture, answer: 0 }))
     selfConditions.value.forEach(function (element) {
-    element.answer = 0;
+    element.picture.answer = 0;
 });
-}
+};
+
 const selfConditions = ref(null)
 
-const currentImageIndex = ref(0)
 
 const startFirstStage = onMounted(() => {
     getImages()
